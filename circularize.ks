@@ -1,10 +1,15 @@
 // Circularize
 
-parameter down is false.
+parameter dir is "up".
+
+if dir = "up" {
+  set down to false.
+} else {
+  set down to true.
+}
 
 run once burntime.
 
-clearScreen.
 print "Circularizing...".
 
 if down {
@@ -42,17 +47,5 @@ local node is NODE(apsiseta, 0, 0, deltaV).
 add node.
 
 run burn.
-
-// UNTIL eta:apoapsis < deltaT / 2 {
-//   lock steering to node:burnvector.
-// }
-
-// lock throttle to 1.0.
-
-// UNTIL orbit:eccentricity < 0.1 and periapsis > 0 {
-//   lock steering to node:burnvector.
-// }
-
-// lock throttle to 0.
 
 print "Circularized.".
