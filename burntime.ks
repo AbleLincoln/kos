@@ -16,6 +16,8 @@ function burntime {
 
   set eV to isp * CONSTANT:G0.
 
+  unlock throttle.
+
   return mass * eV / maxthrustlimited * ( 1 - CONSTANT:E ^ (-1 * dv / eV ) ).
 
 }

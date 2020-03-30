@@ -1,6 +1,5 @@
 run once burntime.
 
-print "nyaaaa".
 set burn to nextNode.
 
 set deltaV to burn:deltav:mag.
@@ -11,16 +10,22 @@ print "Burntime is " + deltaT.
 
 lock steering to burn:deltav.
 
-print "eta is " + burn:eta.
+set dv0 to burn:deltav.
 
-// set timeToBurn to burn:eta - deltaT / 2.
-// warpTo(time:seconds + timeToBurn - 10).
-wait burn:eta - deltaT / 2.
+wait until burn:eta <= deltaT / 2.
 
 lock throttle to 1.0.
 
-wait deltaT.
+wait until vdot(dv0, burn:deltav) < 0.
 
-lock throttle to 0.0.
+unlock throttle.
+unlock steering.
+
+// set throttle to 0 just in case.
+SET SHIP:CONTROL:PILOTMAINTHROTTLE TO 0.
+
+wait 1.
+
+remove burn.
 
 print "maneuver completed".

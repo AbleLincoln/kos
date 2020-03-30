@@ -4,6 +4,7 @@ parameter down is false.
 
 run once burntime.
 
+clearScreen.
 print "Circularizing...".
 
 if down {
